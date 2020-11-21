@@ -12,9 +12,9 @@ public class BatControl : MonoBehaviour
     {
         Vector2 inputVector = mouse.ReadValue<Vector2>();
         Vector3 finalVector = new Vector3();
-        Debug.Log(inputVector);
-        finalVector.x = inputVector.x;
-        transform.RotateAround(player.transform.position, Vector3.up, 20 * Time.deltaTime);
+        finalVector.y = inputVector.x;
+        Debug.Log(finalVector);
+        transform.RotateAround(player.transform.position, finalVector, 5);
     }
 
     private void OnEnable() { mouse.Enable(); }
