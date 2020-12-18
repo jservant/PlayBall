@@ -20,6 +20,8 @@ public class PlayerInput : MonoBehaviour
         Vector3 finalVector = new Vector3();
         finalVector.x = inputVector.x; finalVector.z = inputVector.y;
         controller.Move(finalVector * Time.deltaTime * 3.14f);
+
+        //if (transform.position.y >= 0.5) { transform.position.y = new Vector3(transform.position.x, 0.5f, transform.position.z); }
     }
 
     private void OnEnable() { wasd.Enable(); }
