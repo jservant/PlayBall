@@ -17,9 +17,9 @@ public class BallServe : MonoBehaviour
         {
             GameObject newBall = Instantiate(ball, spawn.transform.position, transform.rotation); // Spawn new instance of ball
             Rigidbody ballrb = newBall.GetComponent<Rigidbody>(); // That specific ball gets a rb
-            ballSpeed = Random.Range(500, 1000); // Randomize speed on the ball
+            ballSpeed = Random.Range(1000, 1800); // Randomize speed on the ball
             ballrb.AddForce(-transform.forward * ballSpeed); // shuut
-            ballTimer = Random.Range(6, 15);
+            ballTimer = Random.Range(5, 10);
             ballTime = 0f; // Reset the time that needs to go up
         }
     }

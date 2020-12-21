@@ -8,6 +8,7 @@ public class BatControl : MonoBehaviour
     public InputAction mouse;
     public GameObject player;
     public Collider hitbox;
+    public float speedMult = 1;
     //[SerializeField] float speedLimit;
 
     void Update()
@@ -16,10 +17,12 @@ public class BatControl : MonoBehaviour
         Vector3 finalVector = new Vector3();
         finalVector.y = inputVector.x;
         //Debug.Log(finalVector);
-        transform.RotateAround(player.transform.position, finalVector, Mathf.Abs(finalVector.y));
-        if (inputVector.x == 0) { hitbox.enabled = false; } else { hitbox.enabled = true; }
-        //if (transform.eulerAngles.y > 150) { transform.eulerAngles = new Vector3(transform.eulerAngles.x, 150, transform.eulerAngles.z); }
-        //if (transform.eulerAngles.y < -150) { transform.eulerAngles = new Vector3(transform.eulerAngles.x, -150, transform.eulerAngles.z); }
+        transform.RotateAround(player.transform.position, finalVector, Mathf.Abs(finalVector.y) * speedMult) ;
+        //if (inputVector.x == 0) { hitbox.enabled = false; } else { hitbox.enabled = true; }
+
+        var kb = Keyboard.current;
+        if (kb.leftBracketKey.wasPressedThisFrame && speedMult > 0.1f) { speedMult -= 0.1f; }
+        if (kb.rightBracketKey.wasPressedThisFrame && speedMult < 2.5f) { speedMult += 0.1f; }
     }
 
     private void OnEnable() { mouse.Enable(); }
