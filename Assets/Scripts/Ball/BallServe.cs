@@ -9,12 +9,14 @@ public class BallServe : MonoBehaviour
     [SerializeField] float ballTime;
     [SerializeField] int ballTimer = 8;
     [SerializeField] int ballSpeed;
+    [SerializeField] Animator cannonAnim;
 
     void Update()
     {
         if (ballTime < ballTimer) { ballTime += Time.deltaTime; } // Time to launch ball still goes up
         else
         {
+            cannonAnim.SetTrigger("playShoot");
             GameObject newBall = Instantiate(ball, spawn.transform.position, transform.rotation); // Spawn new instance of ball
             Rigidbody ballrb = newBall.GetComponent<Rigidbody>(); // That specific ball gets a rb
             ballSpeed = Random.Range(1000, 1800); // Randomize speed on the ball

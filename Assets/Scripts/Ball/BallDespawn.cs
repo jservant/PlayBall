@@ -9,11 +9,6 @@ public class BallDespawn : MonoBehaviour
     float noHitTimer;
     public bool hit = false;
 
-    private void Start()
-    {
-
-    }
-
     void Update()
     {
         if (hit) { timer += Time.deltaTime; noHitTimer = 0f; }
@@ -23,13 +18,20 @@ public class BallDespawn : MonoBehaviour
             Debug.Log(transform.position.z);
             HighScoreKeeper.distance = transform.position.z;
             if (transform.position.y <= -5) { Debug.Log("OUT OF THE PARK"); Destroy(gameObject); }
-            else if (!hit && transform.position.z <= -3.5f) { Debug.Log("Strike"); Destroy(gameObject); }
-            else if (transform.position.z <= 1f) { Debug.Log("Foul"); Destroy(gameObject); }
-            else if (transform.position.z <= 15f) { Debug.Log("Single"); Destroy(gameObject); }
-            else if (transform.position.z <= 30f) { Debug.Log("Double"); Destroy(gameObject); }
-            else if (transform.position.z <= 50f) { Debug.Log("Triple"); Destroy(gameObject); }
-            else if (transform.position.z > 50f) { Debug.Log("Home Run!"); Destroy(gameObject); }
+            else if (!hit && transform.position.z <= -3.5f) { Despawn("Strike"); }
+            else if (transform.position.z <= 1f) { Despawn("Foul"); }
+            else if (transform.position.z <= 15f) { Despawn("Single"); }
+            else if (transform.position.z <= 30f) { Despawn("Double"); }
+            else if (transform.position.z <= 45f) { Despawn("Triple"); }
+            else if (transform.position.z > 50f) { Despawn("Home Run!"); }
         }
+    }
+
+    void Despawn(string Result)
+    {
+        CenterUI.result.text = Result;
+        CenterUI.timer = 1f;
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

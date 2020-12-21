@@ -18,7 +18,7 @@ public class BatControl : MonoBehaviour
         finalVector.y = inputVector.x;
         //Debug.Log(finalVector);
         transform.RotateAround(player.transform.position, finalVector, Mathf.Abs(finalVector.y) * speedMult) ;
-        //if (inputVector.x == 0) { hitbox.enabled = false; } else { hitbox.enabled = true; }
+        if (inputVector.x == 0) { hitbox.enabled = false; } else { hitbox.enabled = true; }
 
         var kb = Keyboard.current;
         if (kb.leftBracketKey.wasPressedThisFrame && speedMult > 0.1f) { speedMult -= 0.1f; }
